@@ -1,0 +1,60 @@
+{
+  "heroes": [
+    {
+      "heroImage": "assets/images/thor.png",
+      "heroLogo": "assets/images/thor_logo.png",
+      "heroName": "THOR",
+      "heroInfo": "Thor Odinson is the god of thunder and a member of the Avengers. With his mighty hammer Mjolnir, Thor wields incredible power and protects the realms from threats. His adventures often involve battling powerful villains and teaming up with fellow superheroes.",
+      "heroLatestNews": [
+        "https://th.bing.com/th/id/OIP.OVo-nnD5F2Dmf1jfdV2qJAHaEK?w=328&h=184&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+        "https://th.bing.com/th/id/OIP.GyLi37uxHqwTJyMOERvuLgHaFq?w=256&h=196&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+        "https://th.bing.com/th/id/OIP.G_LXnA7bk4TPUGQGV7hEPAHaEK?w=333&h=187&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+        "https://th.bing.com/th/id/OIP.zx74PW1GLig_Pt5WDjF0zAHaE8?w=251&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+      ],
+      "relatedMovies": [
+        "https://th.bing.com/th/id/OIP.yG-X3oIv-U7reJRKa4YUDgHaLH?w=195&h=292&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+        "https://th.bing.com/th/id/OIP.bJwnHvVMboOOQh2DbQWL4AHaKL?w=195&h=268&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+        "https://th.bing.com/th/id/OIP.ZkOmuqOWNqKDYkMKe2YeAgHaK-?w=195&h=289&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+        "https://th.bing.com/th/id/OIP.737wjSunbkMi4UO7TXg5FgHaLl?w=195&h=306&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+      ]
+    },
+    {
+      "heroImage": "assets/images/spiderman.png",
+      "heroLogo": "assets/images/spiderman_logo.png",
+      "heroName": "SPIDER-MAN",
+      "heroInfo": "Peter Parker is a high school student who gained spider-like abilities after a radioactive spider bite. As Spider-Man, he swings through the city, using his web-slinging skills to fight crime and protect the innocent. Peter's quick wit and sense of responsibility make him a beloved hero.",
+      "heroLatestNews": [
+        "https://th.bing.com/th/id/OIP.iXxLAfaICWsxz8GYvMqyjQHaEo?pid=ImgDet&rs=1",
+        "https://th.bing.com/th/id/OIP.QUuIT6Sky-6tAwTjNj0QnwHaE8?w=258&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+        "https://th.bing.com/th/id/OIP.4nzwk-jxc--zdpBKaAFMmgHaEK?w=312&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+        "https://th.bing.com/th/id/OIP.q7cln9M6aIPTWQ1XVcrNmQHaEo?w=292&h=185&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+      ],
+      "relatedMovies": [
+        "https://th.bing.com/th/id/OIP.n7HGyqbnW-dwIBhS29pYjAHaKu?w=195&h=283&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+        "https://th.bing.com/th/id/OIP.0NK6g_1CfFsmq-_iZGpcSwHaKe?w=195&h=276&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+        "https://th.bing.com/th/id/OIP.ZkOmuqOWNqKDYkMKe2YeAgHaK-?w=195&h=289&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+        "https://th.bing.com/th/id/OIP.SePbtyC1tWoRZ4_iWxoJigHaK2?w=195&h=286&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+      ]
+
+    },
+    {
+      "heroImage": "assets/images/ironman.png",
+      "heroLogo": "assets/images/iron_man_logo.png",
+      "heroName": "IRON-MAN",
+      "heroInfo": "Tony Stark is a genius billionaire who built a high-tech suit to become a superhero. As Iron Man, he uses his advanced armor and intelligence to fight villains and protect the world. Tony's charisma and larger-than-life personality make him a prominent figure in the superhero community.",
+      "heroLatestNews": [
+        "https://th.bing.com/th/id/OIP._dGEYnNIPznFr-UcvqotlAHaD4?w=276&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+        "https://th.bing.com/th/id/OIP.sTqaggQY3NAPkY1y-4nWcAHaDt?w=274&h=174&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+        "https://th.bing.com/th/id/OIP.ltN7SoQM3PjT9jYlKH0iGgHaEK?w=273&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+        "https://th.bing.com/th/id/OIP.f5v4xQYvVhcr7ck6tBNxQAHaEL?w=280&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+      ],
+      "relatedMovies": [
+        "https://th.bing.com/th/id/OIP.EaTqVhLJMJl2tNSsMDUKgwHaKq?w=195&h=280&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+        "https://th.bing.com/th/id/OIP.vnrgrNlhYDBTHQgt-2O8pQHaK-?w=195&h=289&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+        "https://th.bing.com/th/id/OIP.ZkOmuqOWNqKDYkMKe2YeAgHaK-?w=195&h=289&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+        "https://th.bing.com/th/id/OIP.SePbtyC1tWoRZ4_iWxoJigHaK2?w=195&h=286&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+      ]
+
+    }
+  ]
+}
