@@ -1,9 +1,7 @@
 import 'dart:convert';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import '../model/heros_model.dart';
 import '../widget/hero_card_widget.dart';
 import 'detail_screen.dart';
@@ -74,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: deviceSize.height * 0.8,
                   child: CarouselSlider.builder(
                       options: CarouselOptions(
-                        viewportFraction: 1,
+                        viewportFraction: 0.8,
                         reverse: false,
                         autoPlay: false,
                         enlargeCenterPage: true,
@@ -86,8 +84,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       itemBuilder: (BuildContext context, int itemIndex,
                           int pageViewIndex) {
                         final hero = heroes[itemIndex];
-                        print(itemIndex);
-                        print(pageViewIndex / 10);
                         return GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(

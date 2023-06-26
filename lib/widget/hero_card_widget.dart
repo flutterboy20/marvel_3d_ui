@@ -23,19 +23,6 @@ class HerosCardWidget extends StatefulWidget {
 }
 
 class _HerosCardWidgetState extends State<HerosCardWidget> {
-  bool animate = true;
-
-  @override
-  void initState() {
-    Future.delayed(const Duration(milliseconds: 200), () {
-      setState(() {
-        animate = false;
-      });
-    });
-
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -95,61 +82,18 @@ class _HerosCardWidgetState extends State<HerosCardWidget> {
               ),
             ),
           ),
-          AnimatedPositioned(
-            curve: Curves.easeIn,
+          Positioned(
             top: -20,
-            left: animate ? 50 : 0,
-            duration: const Duration(milliseconds: 200),
             child: SizedBox(
               width: widget.deviceSize.width,
               height: widget.deviceSize.height * 0.55,
-              child: Hero(
-                tag: widget.heroName,
-                child: Image.asset(
-                  widget.heroImage,
-                ),
+              child: Image.asset(
+                widget.heroImage,
               ),
             ),
           ),
         ],
       ),
     );
-  }
-}
-
-class TranslateHero extends StatefulWidget {
-  const TranslateHero({super.key, required this.child});
-  final Widget? child;
-
-  @override
-  State<TranslateHero> createState() => _TranslateHeroState();
-}
-
-class _TranslateHeroState extends State<TranslateHero>
-    with SingleTickerProviderStateMixin {
-  late AnimationController controller;
-  late Animation<double> animation;
-
-  @override
-  void initState() {
-    super.initState();
-    controller =
-        AnimationController(duration: const Duration(seconds: 4), vsync: this)
-          ..addListener(() => setState(() {}));
-    animation = Tween(begin: 200.0, end: 0.0).animate(controller);
-    controller.forward();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Transform.translate(
-        offset: Offset(controller.value, 0),
-        child: widget.child ?? Container());
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
   }
 }
