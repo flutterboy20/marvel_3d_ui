@@ -1,7 +1,9 @@
 import 'dart:convert';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import '../model/heros_model.dart';
 import '../widget/hero_card_widget.dart';
 import 'detail_screen.dart';
@@ -33,6 +35,8 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       heroes = heroList;
     });
+
+    heroes.map((e) => print(e.heroName)).toList();
   }
 
   @override
@@ -63,48 +67,51 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontWeight: FontWeight.w500),
               ),
             ),
-            Center(
-              child: SizedBox(
-                width: deviceSize.width,
-                height: deviceSize.height * 0.8,
-                child: CarouselSlider.builder(
-                    options: CarouselOptions(
-                      viewportFraction: 0.8,
-                      initialPage: 1,
-                      reverse: false,
-                      autoPlay: false,
-                      enlargeCenterPage: true,
-                      scrollDirection: Axis.horizontal,
-                      disableCenter: true,
-                      enlargeFactor: 0.3,
-                    ),
-                    itemCount: heroes.length,
-                    itemBuilder: (BuildContext context, int itemIndex,
-                        int pageViewIndex) {
-                      final hero = heroes[itemIndex];
-                      return GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => DetailScreen(
-                                color: colors[itemIndex],
-                                hero: hero,
+            if (heroes.isNotEmpty)
+              Center(
+                child: SizedBox(
+                  width: deviceSize.width,
+                  height: deviceSize.height * 0.8,
+                  child: CarouselSlider.builder(
+                      options: CarouselOptions(
+                        viewportFraction: 1,
+                        reverse: false,
+                        autoPlay: false,
+                        enlargeCenterPage: true,
+                        scrollDirection: Axis.horizontal,
+                        disableCenter: true,
+                        enlargeFactor: 0.3,
+                      ),
+                      itemCount: heroes.length,
+                      itemBuilder: (BuildContext context, int itemIndex,
+                          int pageViewIndex) {
+                        final hero = heroes[itemIndex];
+                        print(itemIndex);
+                        print(pageViewIndex / 10);
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => DetailScreen(
+                                  color: colors[itemIndex],
+                                  hero: hero,
+                                ),
                               ),
-                            ),
-                          );
-                        },
-                        child: HerosCardWidget(
-                          deviceSize: deviceSize,
-                          heroImage: hero.heroImage,
-                          heroLogo: hero.heroLogo,
-                          heroInfo: hero.heroInfo,
-                          heroName: hero.heroName,
-                          color: colors[itemIndex],
-                        ),
-                      );
-                    }),
+                            );
+                          },
+                          child: HerosCardWidget(
+                            key: UniqueKey(),
+                            deviceSize: deviceSize,
+                            heroImage: hero.heroImage,
+                            heroLogo: hero.heroLogo,
+                            heroInfo: hero.heroInfo,
+                            heroName: hero.heroName,
+                            color: colors[itemIndex],
+                          ),
+                        );
+                      }),
+                ),
               ),
-            ),
           ],
         ),
       ),

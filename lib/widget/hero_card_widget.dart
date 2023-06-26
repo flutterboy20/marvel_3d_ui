@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class HerosCardWidget extends StatelessWidget {
+class HerosCardWidget extends StatefulWidget {
   const HerosCardWidget({
     super.key,
     required this.deviceSize,
@@ -19,29 +19,48 @@ class HerosCardWidget extends StatelessWidget {
   final Color color;
 
   @override
+  State<HerosCardWidget> createState() => _HerosCardWidgetState();
+}
+
+class _HerosCardWidgetState extends State<HerosCardWidget> {
+  bool animate = true;
+
+  @override
+  void initState() {
+    Future.delayed(const Duration(milliseconds: 200), () {
+      setState(() {
+        animate = false;
+      });
+    });
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: deviceSize.width * 0.8,
-      height: deviceSize.height * 0.8,
+      key: widget.key,
+      width: widget.deviceSize.width * 0.8,
+      height: widget.deviceSize.height * 0.8,
       child: Stack(
         alignment: Alignment.center,
         children: [
           Positioned(
             bottom: 0,
             child: Container(
-              width: deviceSize.width * 0.8,
-              height: deviceSize.height * 0.6,
+              width: widget.deviceSize.width * 0.8,
+              height: widget.deviceSize.height * 0.6,
               decoration: BoxDecoration(
-                  color: color, borderRadius: BorderRadius.circular(14)),
+                  color: widget.color, borderRadius: BorderRadius.circular(14)),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: deviceSize.height * 0.3,
-                      width: deviceSize.width * 0.7,
+                      height: widget.deviceSize.height * 0.3,
+                      width: widget.deviceSize.width * 0.7,
                       child: Image.asset(
-                        heroLogo,
+                        widget.heroLogo,
                         fit: BoxFit.contain,
                         color: Colors.white,
                       ),
@@ -50,7 +69,7 @@ class HerosCardWidget extends StatelessWidget {
                       height: 12,
                     ),
                     Text(
-                      heroName,
+                      widget.heroName,
                       style: const TextStyle(
                           fontSize: 32,
                           fontWeight: FontWeight.bold,
@@ -62,7 +81,7 @@ class HerosCardWidget extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 12.0),
                       child: Text(
-                        heroInfo,
+                        widget.heroInfo,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 7,
                         style: const TextStyle(
@@ -76,15 +95,18 @@ class HerosCardWidget extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
+          AnimatedPositioned(
+            curve: Curves.easeIn,
             top: -20,
+            left: animate ? 50 : 0,
+            duration: const Duration(milliseconds: 200),
             child: SizedBox(
-              width: deviceSize.width,
-              height: deviceSize.height * 0.55,
+              width: widget.deviceSize.width,
+              height: widget.deviceSize.height * 0.55,
               child: Hero(
-                tag: heroName,
+                tag: widget.heroName,
                 child: Image.asset(
-                  heroImage,
+                  widget.heroImage,
                 ),
               ),
             ),
@@ -92,5 +114,42 @@ class HerosCardWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class TranslateHero extends StatefulWidget {
+  const TranslateHero({super.key, required this.child});
+  final Widget? child;
+
+  @override
+  State<TranslateHero> createState() => _TranslateHeroState();
+}
+
+class _TranslateHeroState extends State<TranslateHero>
+    with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+  late Animation<double> animation;
+
+  @override
+  void initState() {
+    super.initState();
+    controller =
+        AnimationController(duration: const Duration(seconds: 4), vsync: this)
+          ..addListener(() => setState(() {}));
+    animation = Tween(begin: 200.0, end: 0.0).animate(controller);
+    controller.forward();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Transform.translate(
+        offset: Offset(controller.value, 0),
+        child: widget.child ?? Container());
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 }
