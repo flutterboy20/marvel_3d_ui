@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/scheduler.dart';
-
 import '../model/heros_model.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -18,14 +17,27 @@ class _DetailScreenState extends State<DetailScreen> {
   bool animate = false;
 
   bool reverseScroll = false;
+  ScrollController scrollController = ScrollController();
   @override
   void initState() {
     Future.delayed(const Duration(milliseconds: 200), () {
       setState(() {
         animate = true;
       });
-    });
+    }).then(
+      (value) {
+        setState(() {
+          reverseScroll = true;
+        });
+      },
+    );
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
   }
 
   @override
@@ -39,8 +51,6 @@ class _DetailScreenState extends State<DetailScreen> {
       backgroundColor: widget.color,
       body: Stack(
         children: [
-          // Positioned.fill(
-          // child:
           Stack(
             children: [
               Column(
@@ -77,9 +87,9 @@ class _DetailScreenState extends State<DetailScreen> {
                 ],
               ),
               AnimatedPositioned(
-                duration: const Duration(milliseconds: 400),
+                duration: const Duration(milliseconds: 320),
                 top: animate ? 0 : -300,
-                curve: Curves.fastEaseInToSlowEaseOut,
+                curve: Curves.fastOutSlowIn,
                 child: SizedBox(
                   width: deviceSize.width,
                   height: deviceSize.height * 0.4,
@@ -91,100 +101,7 @@ class _DetailScreenState extends State<DetailScreen> {
               ),
             ],
           ),
-          // ),
           customDraggableSheet()
-          // Positioned.fill(
-          //   child: SizedBox.expand(
-          //     child: DraggableScrollableSheet(
-          //       minChildSize: 0.25,
-          //       maxChildSize: 0.7,
-          //       initialChildSize: 0.25,
-          //       builder:
-          //           (BuildContext context, ScrollController scrollController) {
-          //         return Container(
-          //           decoration: const BoxDecoration(
-          //             color: Colors.white,
-          //             borderRadius: BorderRadius.only(
-          //               topLeft: Radius.circular(12),
-          //               topRight: Radius.circular(12),
-          //             ),
-          //           ),
-          //           child: SingleChildScrollView(
-          //             controller: scrollController,
-          //             // physics: NeverScrollableScrollPhysics(),
-          //             child: Column(
-          //               crossAxisAlignment: CrossAxisAlignment.start,
-          //               children: [
-          //                 const Padding(
-          //                   padding: EdgeInsets.only(left: 14.0, top: 8),
-          //                   child: Text(
-          //                     "Latest News",
-          //                     style: TextStyle(
-          //                         fontSize: 18,
-          //                         fontWeight: FontWeight.bold,
-          //                         color: Colors.black),
-          //                   ),
-          //                 ),
-          //                 SizedBox(
-          //                   height: 150,
-          //                   child: ListView.builder(
-          //                       scrollDirection: Axis.horizontal,
-          //                       itemCount: widget.hero.heroLatestNews.length,
-          //                       itemBuilder: (context, index) {
-          //                         return Container(
-          //                           width: 250,
-          //                           margin: const EdgeInsets.all(8),
-          //                           decoration: BoxDecoration(
-          //                             borderRadius: BorderRadius.circular(12),
-          //                             image: DecorationImage(
-          //                               image: NetworkImage(
-          //                                 widget.hero.heroLatestNews[index],
-          //                               ),
-          //                               fit: BoxFit.cover,
-          //                             ),
-          //                           ),
-          //                         );
-          //                       }),
-          //                 ),
-          //                 const Padding(
-          //                   padding: EdgeInsets.only(left: 14.0, top: 8),
-          //                   child: Text(
-          //                     "Related Movies",
-          //                     style: TextStyle(
-          //                         fontSize: 18,
-          //                         fontWeight: FontWeight.bold,
-          //                         color: Colors.black),
-          //                   ),
-          //                 ),
-          //                 SizedBox(
-          //                   height: 250,
-          //                   child: ListView.builder(
-          //                       scrollDirection: Axis.horizontal,
-          //                       itemCount: widget.hero.heroLatestNews.length,
-          //                       itemBuilder: (context, index) {
-          //                         return Container(
-          //                           width: 150,
-          //                           margin: const EdgeInsets.all(8),
-          //                           decoration: BoxDecoration(
-          //                             borderRadius: BorderRadius.circular(12),
-          //                             image: DecorationImage(
-          //                               image: NetworkImage(
-          //                                 widget.hero.relatedMovies[index],
-          //                               ),
-          //                               fit: BoxFit.cover,
-          //                             ),
-          //                           ),
-          //                         );
-          //                       }),
-          //                 )
-          //               ],
-          //             ),
-          //           ),
-          //         );
-          //       },
-          //     ),
-          //   ),
-          // ),
         ],
       ),
     );
@@ -197,7 +114,7 @@ class _DetailScreenState extends State<DetailScreen> {
       child: AnimatedContainer(
         height: reverseScroll ? hight * 0.60 : hight * 0.24,
         curve: Curves.easeInOutBack,
-        duration: const Duration(milliseconds: 500),
+        duration: const Duration(milliseconds: 1500),
         child: Material(
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(15),
@@ -207,7 +124,6 @@ class _DetailScreenState extends State<DetailScreen> {
             onNotification: (notification) {
               final ScrollDirection direction = notification.direction;
               SchedulerBinding.instance.addPostFrameCallback((_) {
-                //
                 if (mounted) {
                   setState(() {
                     if (direction == ScrollDirection.reverse &&
@@ -217,7 +133,6 @@ class _DetailScreenState extends State<DetailScreen> {
                         notification.metrics.axis == Axis.vertical) {
                       reverseScroll = false;
                     }
-                    print(reverseScroll);
                   });
                 }
               });
@@ -225,8 +140,7 @@ class _DetailScreenState extends State<DetailScreen> {
               return true;
             },
             child: SingleChildScrollView(
-              // controller: scrollController,
-              // physics: NeverScrollableScrollPhysics(),
+              controller: scrollController,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -243,6 +157,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   SizedBox(
                     height: hight * 0.20,
                     child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
                         scrollDirection: Axis.horizontal,
                         itemCount: widget.hero.heroLatestNews.length,
                         itemBuilder: (context, index) {
@@ -274,6 +189,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   SizedBox(
                     height: hight * 0.30,
                     child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
                         scrollDirection: Axis.horizontal,
                         itemCount: widget.hero.heroLatestNews.length,
                         itemBuilder: (context, index) {
