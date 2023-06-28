@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/scheduler.dart';
+
 import '../model/heros_model.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -141,6 +142,7 @@ class _DetailScreenState extends State<DetailScreen> {
             },
             child: SingleChildScrollView(
               controller: scrollController,
+              physics: const BouncingScrollPhysics(),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -209,7 +211,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         }),
                   ),
                   Container(
-                    height: hight * 0.02,
+                    height: hight * 0.03,
                   )
                 ],
               ),
