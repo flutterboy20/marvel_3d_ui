@@ -209,7 +209,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         }),
                   ),
                   Container(
-                    height: hight * 0.02,
+                    height: hight * 0.03,
                   )
                 ],
               ),
