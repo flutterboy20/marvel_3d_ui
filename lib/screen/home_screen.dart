@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Color> colors = [
     const Color.fromARGB(255, 3, 25, 154),
     Colors.red.shade700,
-    Colors.orange
+    const Color.fromARGB(255, 223, 134, 0)
   ];
 
   @override
