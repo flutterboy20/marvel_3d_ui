@@ -15,7 +15,11 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<HeroModal> heroes = [];
-  List<Color> colors = [Colors.indigo, Colors.red, Colors.amber];
+  List<Color> colors = [
+    const Color.fromARGB(255, 3, 25, 154),
+    Colors.red.shade700,
+    Colors.orange
+  ];
 
   @override
   void initState() {
